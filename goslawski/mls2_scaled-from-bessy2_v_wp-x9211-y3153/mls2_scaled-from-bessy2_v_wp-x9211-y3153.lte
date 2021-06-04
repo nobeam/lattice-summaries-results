@@ -1,0 +1,34 @@
+! TITLE: 
+dq1: drif, l=0.288
+ds1: drif, l=0.16
+dq2: drif, l=0.26
+ds2: drif, l=0.307
+db: drif, l=0.26
+ds3: drif, l=0.153
+dq: drif, l=0.153
+dl: drif, l=2.806
+dk: drif, l=2.453
+q1: kquad, l=0.25, k1=2.425246
+q2: kquad, l=0.2, k1=-1.652303
+q3d: kquad, l=0.25, k1=-1.76175
+q4d: kquad, l=0.5, k1=1.404
+q3t: kquad, l=0.25, k1=-2.27375
+q4t: kquad, l=0.5, k1=2.636
+q5t: kquad, l=0.2, k1=-2.625
+b: csbend, l=1.175, angle=0.392699, e1=0.19635, e2=0.19635
+s1: ksext, l=0.105, k2=25.05629
+s2: ksext, l=0.16, k2=-21.033512
+s3d: ksext, l=0.16, k2=-20.368346
+s4d: ksext, l=0.16, k2=13.942256
+s3t: ksext, l=0.16, k2=-27.590054
+s4t: ksext, l=0.16, k2=41.669398
+t2match: drif, l=0
+drh: line=(dl, s4d, dq, q4d, ds3, s3d, dq, q3d, db)
+achlh: line=(b, dq2, q2, ds2, s2, dq1, q1, ds1, s1)
+achlh_reversed: line=(s1, ds1, q1, dq1, s2, ds2, q2, dq2, b)
+tlh: line=(db, q3t, dq, s3t, ds3, q4t, dq, s4t, dq, q5t, dk)
+tlh_reversed: line=(dk, q5t, dq, s4t, dq, q4t, ds3, s3t, dq, q3t, db)
+drh_reversed: line=(db, q3d, dq, s3d, ds3, q4d, dq, s4d, dl)
+cell: line=(drh, achlh, achlh_reversed, tlh, tlh_reversed, achlh, achlh_reversed, drh_reversed)
+ring: line=(cell, cell, cell, cell)
+USE, ring

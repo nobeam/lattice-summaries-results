@@ -1,0 +1,53 @@
+! TITLE: 
+l0: drif, l=0.1
+l1: drif, l=0.1
+l2: drif, l=0.1
+l3: drif, l=0.1
+ml0: drif, l=0.1
+ml1: drif, l=0.1
+ml2: drif, l=0.1
+ml3: drif, l=0.1
+ul0: drif, l=0.1
+ul1: drif, l=0.1
+ul2: drif, l=0.1
+ul3: drif, l=0.1
+ul4: drif, l=2.8
+q0: kquad, l=0.11, k1=-7.702058
+q0dsc1: kquad, l=0.11, k1=-7.702058
+q0dsc2: kquad, l=0.11, k1=-7.702058
+q1: kquad, l=0.18, k1=7.965777
+q1a: kquad, l=0.09, k1=4.351168
+mq0: kquad, l=0.1, k1=0.0
+mq1: kquad, l=0.08, k1=-8.878971
+mq2: kquad, l=0.11, k1=8.617091
+uq1: kquad, l=0.1, k1=-6.174755
+uq2: kquad, l=0.28, k1=7.731768
+uq3: kquad, l=0.09, k1=-7.696539
+b0uc: csbend, l=0.6, angle=0.03848450445, k1=0.0, e1=0.0, e2=0.03848450445
+b1uc: csbend, l=0.14, angle=-0.0043633225, k1=8.081387, e1=-0.00218166125, e2=-0.00218166125
+b1dsca1: csbend, l=0.22, angle=-0.0043633225, k1=7.630257, e1=-0.00218166125, e2=-0.00218166125
+b1dsca2: csbend, l=0.22, angle=-0.0043633225, k1=7.630257, e1=-0.00218166125, e2=-0.00218166125
+b0dsc: csbend, l=0.6, angle=0.0598647847, k1=-2.237166, e1=0.02993239235, e2=0.02993239235
+s0: ksext, l=0.04, k2=1010.2183
+s0a: ksext, l=0.04, k2=2047.24288
+s1: ksext, l=0.08, k2=-692.0371
+s1a: ksext, l=0.08, k2=-1468.57747
+s3: ksext, l=0.08, k2=797.802158
+s4: ksext, l=0.08, k2=74.779954
+b0c: drif, l=0
+s0c: drif, l=0
+b0uc_reversed: csbend, l=0.6, angle=0.03848450445, k1=0.0, e1=0.03848450445, e2=0.0
+ms_reversed: line=(ul4, uq3, ul3, s4, ul2, uq2, ul1, uq1, ul0, s3, ul0)
+dschalf2_reversed: line=(b0dsc, ml2, s1a, ml2, mq2, l1, s0)
+dschalf1_reversed: line=(s0, l3, b1dsca1, l1, s1, l1, q0dsc1, l0, b0uc_reversed)
+dsc_reversed: line=(dschalf2_reversed, dschalf1_reversed)
+uchalf: line=(b0uc, l0, q0, l1, s1, l1, b1uc, l3, s0)
+uchalf_reversed: line=(s0, l3, b1uc, l1, s1, l1, q0, l0, b0uc_reversed)
+mbauc: line=(uchalf, uchalf_reversed)
+dschalf1: line=(b0uc, l0, q0dsc1, l1, s1, l1, b1dsca1, l3, s0)
+dschalf2: line=(s0, l1, mq2, ml2, s1a, ml2, b0dsc)
+dsc: line=(dschalf1, dschalf2)
+ms: line=(ul0, s3, ul0, uq1, ul1, uq2, ul2, s4, ul3, uq3, ul4)
+arc: line=(ms_reversed, dsc_reversed, mbauc, mbauc, mbauc, dsc, ms)
+ring: line=(arc, arc, arc, arc, arc, arc, arc, arc, arc, arc, arc, arc, arc, arc, arc, arc)
+USE, ring
